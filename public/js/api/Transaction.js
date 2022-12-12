@@ -3,7 +3,8 @@
  * Управляет счетами пользователя.
  * Имеет свойство URL со значением '/transaction'
  * */
+'use strict'
 class Transaction extends Entity {
-
+  static URL = '/transaction';
 }
 

@@ -4,7 +4,6 @@
  * Имеет свойство URL со значением '/account'
  * */
  'use strict'
- debugger
  class Account extends Entity {
   static URL = '/account';
  

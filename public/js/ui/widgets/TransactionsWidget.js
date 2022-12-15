@@ -3,6 +3,7 @@
  * открытие всплывающих окон для
  * создания нового дохода или расхода
  * */
+'use strict'
  class TransactionsWidget {
   /**
    * Устанавливает полученный элемент
@@ -18,7 +19,7 @@
       this.element = element;
       this.registerEvents();
     } catch (error) {
-      console.error("Error: ", error);
+      console.error('Error: ', error);
     }
   }
   /**

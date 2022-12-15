@@ -2,19 +2,19 @@
  * Основная функция для совершения запросов
  * на сервер.
  * */
- 'use strict'
- debugger
+'use strict'
+debugger
 const createRequest = (options = {}) => {
 
   const dataList = [];
   const callback = (options.callback) ? options.callback : (f) => f;
 
-    for (const key in options.data) {
-      if (options.data.hasOwnProperty(key)) {
-        const element = `${key}=${options.data[key]}`;
-        dataList.push(element);
-      }
+  for (const key in options.data) {
+    if (options.data.hasOwnProperty(key)) {
+      const element = `${key}=${options.data[key]}`;
+      dataList.push(element);
     }
+  }
 
   const method = options.method;
   let url = options.url;
@@ -27,12 +27,11 @@ const createRequest = (options = {}) => {
     }
   }
 
-  xhr.responseType = options.responseType || 'json';
+  xhr.responseType = 'json';
   xhr.withCredentials = true;
 
   if (method == "GET") {
-    const urlParams = dataList.join('&');
-    url = `${url}?${urlParams}`;
+    url = `${url}?${dataList.join('&')}`;
     xhr.open(method, url);
     xhr.send();
   } else {
@@ -59,6 +58,4 @@ const createRequest = (options = {}) => {
     const err = 'Ошибка запроса';
     callback(err);
   }
-
-  return xhr;
 };

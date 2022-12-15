@@ -6,7 +6,7 @@
 /**
    * Запускает initAuthLinks и initToggleButton
    * */
-  'use strict'
+'use strict'
 class Sidebar {
   static init() {
     this.initAuthLinks();
@@ -40,16 +40,18 @@ class Sidebar {
 
     sidebarMenu.addEventListener('click', event => {
       event.preventDefault();
-      if (event.target.closest('.menu-item_login')) {
-        App.getModal('login').open();
-      }
       if (event.target.closest('.menu-item_register')) {
         App.getModal('register').open();
+      }
+      if (event.target.closest('.menu-item_login')) {
+        App.getModal('login').open();
       }
       if (event.target.closest('.menu-item_logout')) {
         User.logout(null, (err, response) => {
           if (response.success) {
             App.setState('init');
+          } else {
+            console.error ('Error: ', err)
           }
         });
       }

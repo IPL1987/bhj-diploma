@@ -22,7 +22,6 @@ class TransactionsPage {
     } catch (error) {
       console.error("Error: ", error);
     }
-
   }
 
   /**
@@ -46,7 +45,7 @@ class TransactionsPage {
       if (event.target.classList.contains('remove-account')) {
         this.removeAccount();
       }
-      else if (event.target.classList.contains('transaction__remove')) {
+      else if (event.target.classList.contains('btn-danger')) {
         this.removeTransaction(event.target.dataset.id);
       }
     });
@@ -63,7 +62,7 @@ class TransactionsPage {
    * */
   removeAccount() {
     if (this.lastOptions) {
-      if (window.confirm('Удалить счет?')) {
+      if (confirm('Удалить счет?')) {
         this.clear();
         const id = document.querySelector('li.active').dataset.id;
         Account.remove({ id: id }, (err, response) => {
@@ -121,16 +120,16 @@ class TransactionsPage {
    * */
   clear() {
     this.renderTransactions();
-    this.renderTitle("Название счёта");
+    this.renderTitle('Имя счета');
   }
 
   /**
    * Устанавливает заголовок в элемент .content-title
    * */
   renderTitle(name) {
-    const accName = document.querySelector('.content-title');
-    accName.textContent = '';
-    accName.insertAdjacentText('afterbegin', name);
+    const account = document.querySelector('.content-title');
+    account.textContent = '';
+    account.insertAdjacentText('afterbegin', name);
   }
 
   /**
@@ -156,7 +155,7 @@ class TransactionsPage {
           </div>
           <div class="transaction__info">
             <h4 class="transaction__title">${item.name}</h4>
-            <div class="transaction__date">${this.formatDate(item.updated_at)}</div>
+            <div class="transaction__date">${this.formatDate(item.created_at)}</div>
           </div>
         </div>
         <div class="col-md-3">

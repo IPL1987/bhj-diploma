@@ -2,6 +2,7 @@
  * Класс AccountsWidget управляет блоком
  * отображения счетов в боковой колонке
  * */
+'use strict'
 class AccountsWidget {
   /**
    * Устанавливает текущий элемент в свойство element
@@ -15,7 +16,7 @@ class AccountsWidget {
   constructor(element) {
     try {
       if (!element) {
-        throw new Error("Переданного элемента не существует");
+        throw new Error('Элемент не существует');
       }
       this.element = element;
       this.registerEvents();

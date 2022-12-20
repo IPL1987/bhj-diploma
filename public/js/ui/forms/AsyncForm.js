@@ -6,7 +6,6 @@
  * для последующей обработки
  * */
 'use strict'
-debugger
 class AsyncForm {
   /**
    * Если переданный элемент не существует,
@@ -14,16 +13,14 @@ class AsyncForm {
    * Сохраняет переданный элемент и регистрирует события
    * через registerEvents()
    * */
-   constructor(element){
-    try {
-      if (!element) {
-        throw new Error('Элемент не существует');
-      }
-      this.element = element;
-      this.registerEvents();
-    } catch (error) {
-      console.error('Error: ', error);
-    }  
+  constructor(element) {
+    if (!element) {
+      throw new Error('Элемент не существует');
+    }
+    this.element = element;
+    this.registerEvents();
+  } catch(error) {
+    console.error('Error: ', error);
   }
 
   /**
@@ -48,7 +45,7 @@ class AsyncForm {
     return Object.fromEntries(new FormData(this.element));
   }
 
-  onSubmit(options){
+  onSubmit(options) {
 
   }
 

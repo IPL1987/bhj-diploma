@@ -3,7 +3,7 @@
  * на сервер.
  * */
 'use strict'
-debugger
+
 const createRequest = (options = {}) => {
 
   const dataList = [];
@@ -45,13 +45,7 @@ const createRequest = (options = {}) => {
   }
 
   xhr.onload = () => {
-    if (xhr.status !== 200) {
-      const err = `Ошибка ${xhr.status}: ${xhr.statusText}`;
-      callback(err);
-    } else {
-      const response = xhr.response;
-      callback(null, response);
-    }
+    callback(null, xhr.response);
   }
 
   xhr.onerror = () => {

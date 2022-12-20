@@ -14,16 +14,12 @@ class AccountsWidget {
    * необходимо выкинуть ошибку.
    * */
   constructor(element) {
-    try {
-      if (!element) {
-        throw new Error('Элемент не существует');
-      }
-      this.element = element;
-      this.registerEvents();
-      this.update();
-    } catch (error) {
-      console.error("Error: ", error);
+    if (!element) {
+      throw new Error('Элемент не существует');
     }
+    this.element = element;
+    this.registerEvents();
+    this.update();
   }
 
   /**
@@ -59,15 +55,11 @@ class AccountsWidget {
     if (currentUser) {
 
       Account.list(currentUser, (err, response) => {
-        try {
-          if (err) {
-            throw new Error(err);
-          }
-          this.clear();
-          this.renderItem(response.data);
-        } catch (error) {
-          console.error(error);
+        if (err) {
+          throw new Error(err);
         }
+        this.clear();
+        this.renderItem(response.data);
       });
     }
 

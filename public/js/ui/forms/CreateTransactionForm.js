@@ -41,17 +41,13 @@ class CreateTransactionForm extends AsyncForm {
    * */
   onSubmit(options) {
     Transaction.create(options, (err, response) => {
-      try {
-        if (!response.success) {
-          throw new Error(`Ошибка транзакции: ${response.error}`);
-        }
-        this.element.reset();
-        App.getModal('newIncome').close();
-        App.getModal('newExpense').close();
-        App.update();
-      } catch (error) {
-        console.error("Error: ", err);
+      if (!response.success) {
+        throw new Error(`Ошибка транзакции: ${response.error}`);
       }
+      this.element.reset();
+      App.getModal('newIncome').close();
+      App.getModal('newExpense').close();
+      App.update();
     });
   }
 }

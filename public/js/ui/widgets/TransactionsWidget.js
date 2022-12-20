@@ -4,23 +4,19 @@
  * создания нового дохода или расхода
  * */
 'use strict'
- class TransactionsWidget {
+class TransactionsWidget {
   /**
    * Устанавливает полученный элемент
    * в свойство element.
    * Если переданный элемент не существует,
    * необходимо выкинуть ошибку.
    * */
-  constructor( element ) {
-    try {
-      if (!element) {
-        throw new Error('Элемент не существует!');
-      }
-      this.element = element;
-      this.registerEvents();
-    } catch (error) {
-      console.error('Error: ', error);
+  constructor(element) {
+    if (!element) {
+      throw new Error('Элемент не существует!');
     }
+    this.element = element;
+    this.registerEvents();
   }
   /**
    * Регистрирует обработчики нажатия на

@@ -12,16 +12,12 @@ class TransactionsPage {
    * через registerEvents()
    * */
   constructor(element) {
-    try {
       if (!element) {
         throw new Error('Элемент не существует');
       }
       this.element = element;
       this.registerEvents();
       this.lastOptions;
-    } catch (error) {
-      console.error("Error: ", error);
-    }
   }
 
   /**
@@ -39,14 +35,15 @@ class TransactionsPage {
    * */
   //button.btn-danger
   registerEvents() {
-    const deleteBtn = document.querySelector('.content-wrapper');
-    deleteBtn.addEventListener('click', (event) => {
-      event.preventDefault();
-      if (event.target.classList.contains('remove-account')) {
-        this.removeAccount();
-      }
-      else if (event.target.classList.contains('btn-danger')) {
-        this.removeTransaction(event.target.dataset.id);
+    const deleteAcc = this.element.querySelector('.remove-account');
+    deleteAcc.addEventListener('click', () => {
+      this.removeAccount();
+    });
+
+    this.element.addEventListener('click', event => {
+      if (event.target.closest('.transaction__remove')) {
+        const id = event.target.closest('.transaction__remove').dataset.id;
+        this.removeTransaction(id);
       }
     });
   }
@@ -81,9 +78,9 @@ class TransactionsPage {
    * По удалению транзакции вызовите метод App.update(),
    * либо обновляйте текущую страницу (метод update) и виджет со счетами
    * */
-  removeTransaction(id) {
-    if (confirm('Удалить транзакцию?')) {
-      Transaction.remove({ id: id }, (err, response) => {
+   removeTransaction( id ) {
+    if (window.confirm('Удалить транзакцию?')) {
+      Transaction.remove({id: id}, (err, response) => {
         if (response.success) {
           App.update();
         }

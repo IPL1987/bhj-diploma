@@ -19,8 +19,6 @@ class AsyncForm {
     }
     this.element = element;
     this.registerEvents();
-  } catch(error) {
-    console.error('Error: ', error);
   }
 
   /**
